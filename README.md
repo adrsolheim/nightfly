@@ -1,3 +1,6 @@
+# Nightfly
+![Nightfly](notlogo.png)
+
 To execute `application-local.properties` in IntelliJ
 - `Run | Edit Configuration...`
 - In `Configuration` tab
