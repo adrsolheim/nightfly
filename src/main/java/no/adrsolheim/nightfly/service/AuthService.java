@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -46,6 +47,17 @@ public class AuthService {
         mailService.sendMail(new NotificationMail("Please verify your email.", user.getEmail(),
                 "Thank you for registering at adrsolheim.no! Click on the follwing URL to activate your account: "
                         + "http://localhost:6060/api/auth/accountVerification/" + token));
+    }
+
+    @Transactional
+    public void verify(String token) throws NightflyException {
+        VerificationToken vtoken = verificationTokenRepository.findByToken(token).orElseThrow(
+                () -> new NightflyException("Attempted to verify an account, but invalid token."));
+
+        String username = vtoken.getUser().getUsername();
+        User account = userRepository.findByUsername(username);
+        account.setEnabled(true);
+        userRepository.save(account);
     }
 
     private String generateVerificationToken(User user) {
