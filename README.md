@@ -77,3 +77,5 @@ CREATE TABLE IF NOT EXISTS verification_token(
 * User registration: **2000 ms**
 ##### `@Async`
 * User registration: **500 ms**
+##### Scaling
+* Message Queues
