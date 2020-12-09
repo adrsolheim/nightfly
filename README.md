@@ -70,3 +70,10 @@ CREATE TABLE IF NOT EXISTS verification_token(
         FOREIGN KEY (user) REFERENCES user(user_id) ON DELETE CASCADE    
         );   
 ```
+
+## Benchmarks
+
+##### Without `@Async`
+* User registration: **2000 ms**
+##### `@Async`
+* User registration: **500 ms**
