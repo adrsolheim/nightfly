@@ -55,7 +55,8 @@ public class AuthService {
                 () -> new NightflyException("Attempted to verify an account, but invalid token."));
 
         String username = vtoken.getUser().getUsername();
-        User account = userRepository.findByUsername(username);
+        User account = userRepository.findByUsername(username).orElseThrow(
+                () -> new NightflyException("User not found: " + username));
         account.setEnabled(true);
         userRepository.save(account);
     }
