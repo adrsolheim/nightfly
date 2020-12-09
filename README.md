@@ -73,9 +73,10 @@ CREATE TABLE IF NOT EXISTS verification_token(
 
 ## Benchmarks
 
-##### Without `@Async`
-* User registration: **2000 ms**
-##### `@Async`
-* User registration: **500 ms**
-##### Scaling
-* Message Queues
+##### User registration
+* Without `@Async`
+	* **2000 ms**
+* `@Async` 
+	* **500 ms**
+* Scaling
+	* Message Queues
