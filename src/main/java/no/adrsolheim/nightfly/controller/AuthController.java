@@ -1,5 +1,6 @@
 package no.adrsolheim.nightfly.controller;
 
+import no.adrsolheim.nightfly.dto.LoginRequest;
 import no.adrsolheim.nightfly.dto.RegisterRequest;
 import no.adrsolheim.nightfly.exception.NightflyException;
 import no.adrsolheim.nightfly.model.User;
@@ -38,5 +39,11 @@ public class AuthController {
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         authService.verify(token);
         return new ResponseEntity<>("Account successfully verifie!\n", HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        authService.login(loginRequest);
+        return null;
     }
 }

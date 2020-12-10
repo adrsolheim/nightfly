@@ -1,5 +1,7 @@
 package no.adrsolheim.nightfly.service;
 
+import no.adrsolheim.nightfly.dto.AuthenticationResponse;
+import no.adrsolheim.nightfly.dto.LoginRequest;
 import no.adrsolheim.nightfly.dto.RegisterRequest;
 import no.adrsolheim.nightfly.exception.NightflyException;
 import no.adrsolheim.nightfly.model.NotificationMail;
@@ -7,7 +9,13 @@ import no.adrsolheim.nightfly.model.User;
 import no.adrsolheim.nightfly.model.VerificationToken;
 import no.adrsolheim.nightfly.repository.UserRepository;
 import no.adrsolheim.nightfly.repository.VerificationTokenRepository;
+import no.adrsolheim.nightfly.security.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +35,10 @@ public class AuthService {
     private VerificationTokenRepository verificationTokenRepository;
     @Autowired
     private MailService mailService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private JwtProvider jwtProvider;
 
     @Transactional
     public void signup(RegisterRequest registerRequest) throws NightflyException {
@@ -59,6 +71,16 @@ public class AuthService {
                 () -> new NightflyException("User not found: " + username));
         account.setEnabled(true);
         userRepository.save(account);
+    }
+
+    public AuthenticationResponse login(LoginRequest loginRequest) throws NightflyException {
+        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                loginRequest.getUsername(), loginRequest.getPassword())
+        );
+        SecurityContextHolder.getContext().setAuthentication(authenticate);
+        String token = jwtProvider.generateToken(authenticate);
+
+        return new AuthenticationResponse(token, loginRequest.getUsername());
     }
 
     private String generateVerificationToken(User user) {
