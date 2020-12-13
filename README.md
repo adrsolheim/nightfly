@@ -71,6 +71,11 @@ CREATE TABLE IF NOT EXISTS verification_token(
         );   
 ```
 
+## Sequence diagrams
+
+#### Signup
+![](signup.png)
+
 ## Benchmarks
 
 ##### User registration
