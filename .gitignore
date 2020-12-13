@@ -13,6 +13,7 @@ sql/
 
 # Personal notes
 *.txt
+diagrams
 
 
 *.iml
