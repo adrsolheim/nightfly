@@ -1,5 +1,6 @@
 package no.adrsolheim.nightfly.controller;
 
+import no.adrsolheim.nightfly.dto.AuthenticationResponse;
 import no.adrsolheim.nightfly.dto.LoginRequest;
 import no.adrsolheim.nightfly.dto.RegisterRequest;
 import no.adrsolheim.nightfly.exception.NightflyException;
@@ -42,8 +43,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        authService.login(loginRequest);
-        return null;
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 }

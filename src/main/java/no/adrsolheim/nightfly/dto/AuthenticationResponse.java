@@ -1,5 +1,9 @@
 package no.adrsolheim.nightfly.dto;
 
+
+/**
+ * The client receives its token as an AuthenticationResponse
+ */
 public class AuthenticationResponse {
     private String authenticationToken;
     private String username;

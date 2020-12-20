@@ -24,11 +24,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     /**
-     * This interface has many implementations, so we specify which one we want
+     * This interface has many implementations, so we specify which one we want.
+     * So wherever @Autowired is used on AuthenticationManager, this bean is
+     * what will be injected.
      */
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
-    public AuthenticationManager authenticationManager() throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
@@ -42,6 +44,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated();                        // anything else requires auth
     }
 
+    /**
+     *  Used to create an AuthenticationManager
+     *  Method injection
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(userDetailsService)
