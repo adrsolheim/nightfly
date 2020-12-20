@@ -18,6 +18,10 @@ diagrams
 
 *.iml
 
+# Security
+*.jks
+*.p12
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
