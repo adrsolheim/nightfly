@@ -22,6 +22,7 @@ public class User {
     @NotBlank(message = "Username is required")
     @Column(unique = true   )
     private String username;
+    // Not raw password, encoded using BCrypt
     @NotBlank(message = "Password is required")
     private String password;
     // TODO: nanoseconds compatible with db?
