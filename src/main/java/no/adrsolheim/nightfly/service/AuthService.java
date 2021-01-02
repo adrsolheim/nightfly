@@ -28,6 +28,7 @@ import java.util.UUID;
 public class AuthService {
 
     @Autowired
+    // See WebSecurityConfig for Bean
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserRepository userRepository;
@@ -74,10 +75,12 @@ public class AuthService {
     }
 
     public AuthenticationResponse login(LoginRequest loginRequest) throws NightflyException {
+        // AuthenticationManager will create a UserDetails object out of the username (principal)
+        // See configureGlobal
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginRequest.getUsername(), loginRequest.getPassword())
         );
-        // You can always check this security context to confirm in the user is logged in (authenticate object exists)
+        // You can always check this security context to confirm if the user is logged in (authenticate object exists)
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String token = jwtProvider.generateToken(authenticate);
 
