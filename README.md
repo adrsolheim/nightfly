@@ -1,5 +1,5 @@
 # Nightfly
-![Nightfly](notlogo.png)
+![Nightfly](images/notlogo.png)
 
 To execute `application-local.properties` in IntelliJ
 - `Run | Edit Configuration...`
@@ -74,7 +74,10 @@ CREATE TABLE IF NOT EXISTS verification_token(
 ## Sequence diagrams
 
 #### Signup
-![](signup.png)
+![](images/signup.png)
+
+#### Login
+![](images/login.png)
 
 ## Benchmarks
 
@@ -85,3 +88,12 @@ CREATE TABLE IF NOT EXISTS verification_token(
 	* **500 ms**
 * Scaling
 	* Message Queues
+
+## Tests
+
+* Create user
+* Activate user account
+* Access control of user with/without privileges
+* Notification mail
+* Login user
+* jwt parse
