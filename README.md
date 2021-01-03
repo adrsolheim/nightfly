@@ -37,8 +37,17 @@ Also worth noting, MariaDB's `DATETIME` stores a date as a number down to micros
 - `MailService` creates a `NotificationMail` which in turn utilizes `MailContentBuilder`, and send it as an account verification email to the user 
 
 
-The `RegisterRequest` class must match the JSON attributes coming in from the request after a signup (`{ "email": "bob@somedomain.no", "username": "Bob", "password": "secret" }`) 
+The `RegisterRequest` class must match the JSON attributes coming in from the request after a signup (`{ "email": "bob@somedomain.no", "username": "bob", "password": "secret" }`) 
 
+#### Login
+- `AuthController` maps the JSON form data to a dto `LoginRequest`
+- `AuthService` uses the dto `LoginRequest` to create a `UsernamePasswordAuthenticationToken` which is passed to `Authentication`
+- `Authentication` object is passed to `SecurityContextHolder`
+- `JwtProvider` generate a JWT token from the `Authentication` object
+- JWT is wrapped in `AuthenticationResponse` and returned
+
+
+The `LoginRequest` class must match the JSON attributes coming in from the request after a signup (`{ "username": "bob", "password": "secret" }`) 
 ---
 
 ##### Dependencies
