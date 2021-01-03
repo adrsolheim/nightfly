@@ -1,5 +1,5 @@
 # Nightfly
-![Nightfly](images/notlogo.png)
+![Image by Henrik Lillebjerka](images/logo.jpg)
 
 To execute `application-local.properties` in IntelliJ
 - `Run | Edit Configuration...`
@@ -8,6 +8,8 @@ To execute `application-local.properties` in IntelliJ
 
 
 #### Security
+**Spring Security is a filter based framework. Either we are enabling existing filter and configuring it, or adding our custom filter.** `configure()` methods will be executed on *start up* to set up `HttpSecurity` or configure spring security filters. Requests has to pass through multiple filters to reach the API. 
+
 Spring Security CSRF protection is *disabled* for now because this application currently only utilizes a REST api (stateless) and JWT instead of session cookies.
 
 Passwords are hashed using [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) and then stored in the database.
