@@ -41,13 +41,14 @@ The `RegisterRequest` class must match the JSON attributes coming in from the re
 
 #### Login
 - `AuthController` maps the JSON form data to a dto `LoginRequest`
-- `AuthService` uses the dto `LoginRequest` to create a `UsernamePasswordAuthenticationToken` which is passed to `Authentication`
+- `AuthService` uses the dto `LoginRequest` to create a `UsernamePasswordAuthenticationToken` which is passed to `Authentication` to create an instance
 - `Authentication` object is passed to `SecurityContextHolder`
 - `JwtProvider` generate a JWT token from the `Authentication` object
 - JWT is wrapped in `AuthenticationResponse` and returned
 
 
 The `LoginRequest` class must match the JSON attributes coming in from the request after a signup (`{ "username": "bob", "password": "secret" }`) 
+
 ---
 
 ##### Dependencies
