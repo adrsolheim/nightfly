@@ -1,5 +1,5 @@
 # Nightfly
-![Image by Henrik Lillebjerka](images/logo.jpg)
+![Image by Henrik Lillebjerka](images/logo.png)
 
 To execute `application-local.properties` in IntelliJ
 - `Run | Edit Configuration...`
