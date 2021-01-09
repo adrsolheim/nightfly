@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS verification_token(
 ![](images/signup.png)
 
 #### Login
-![](images/login.png)
+![](images/loginsequence.png)
 
 ## Benchmarks
 
