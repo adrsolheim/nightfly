@@ -32,6 +32,15 @@ public class AlbumService {
         // TODO: delegate reponsibility of creatin AlbumDto to builder
     }
 
+    private AlbumDto mapAlbum(Album album) {
+        AlbumDto albumDto = new AlbumDto();
+        albumDto.setId(album.getAlbumId());
+        albumDto.setRating(album.getRating());
+        albumDto.setTitle(album.getTitle());
+        albumDto.setArtist(album.getArtist());
+        return albumDto;
+    }
+
     @Transactional(readOnly = true)
     public List<AlbumDto> getAll() {
         List<Album> albums = albumRepository.findAll();
@@ -45,5 +54,11 @@ public class AlbumService {
             result.add(adto);
         }
         return result;
+    }
+
+    @Transactional
+    public AlbumDto getAlbum(int id) {
+        AlbumDto albumDto = mapAlbum(albumRepository.getOne(id));
+        return albumDto;
     }
 }

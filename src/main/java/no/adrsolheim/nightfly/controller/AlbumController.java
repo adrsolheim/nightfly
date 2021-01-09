@@ -27,4 +27,9 @@ public class AlbumController {
     public ResponseEntity<List<AlbumDto>> getAllSubreddits() {
         return ResponseEntity.status(HttpStatus.OK).body(albumService.getAll());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AlbumDto> getSubreddit(@PathVariable int id) {
+        return ResponseEntity.status(HttpStatus.OK).body(albumService.getAlbum(id));
+    }
 }
