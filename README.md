@@ -39,6 +39,8 @@ Also worth noting, MariaDB's `DATETIME` stores a date as a number down to micros
 
 The `RegisterRequest` class must match the JSON attributes coming in from the request after a signup (`{ "email": "bob@somedomain.no", "username": "bob", "password": "secret" }`) 
 
+![](images/signup.png)
+
 #### Login
 - `AuthController` maps the JSON form data to a dto `LoginRequest`
 - `AuthService` uses the dto `LoginRequest` to create a `UsernamePasswordAuthenticationToken` which is passed to `Authentication` to create an instance
@@ -48,6 +50,8 @@ The `RegisterRequest` class must match the JSON attributes coming in from the re
 
 
 The `LoginRequest` class must match the JSON attributes coming in from the request after a signup (`{ "username": "bob", "password": "secret" }`) 
+
+![](images/loginsequence.png)
 
 ---
 
@@ -83,14 +87,6 @@ CREATE TABLE IF NOT EXISTS verification_token(
         );   
 ```
 
-## Sequence diagrams
-
-#### Signup
-![](images/signup.png)
-
-#### Login
-![](images/loginsequence.png)
-
 ## Benchmarks
 
 ##### User registration
@@ -101,7 +97,7 @@ CREATE TABLE IF NOT EXISTS verification_token(
 * Scaling
 	* Message Queues
 
-## Tests
+## Tests (TBA)
 
 * Create user
 * Activate user account
