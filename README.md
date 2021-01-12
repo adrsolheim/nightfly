@@ -3,8 +3,9 @@
 
 To execute `application-local.properties` in IntelliJ
 - `Run | Edit Configuration...`
-- In `Configuration` tab
+- In `Configuration` tab (for both `Application` and `JUnit`)
 - add `-Dspring.profiles.active=local` to `VM options`
+
 
 
 #### Security
