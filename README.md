@@ -4,11 +4,11 @@
 To execute `application-local.properties` in IntelliJ
 - `Run | Edit Configuration...`
 - In  `Application` select the `Configuration` tab 
-- add `-Dspring.profiles.active=local` to `VM options`
+	- add `-Dspring.profiles.active=local` to `VM options`
 - In  `JUnit` select the `Configuration` tab 
-- add `-Dspring.profiles.active=local` to `VM options`
+	- add `-Dspring.profiles.active=local` to `VM options`
 
-Without these options the application will fail to to load ApplicationContext and throw an `IllegalStateException`. 
+Without these options the application will fail to load ApplicationContext and throw an `IllegalStateException`. 
 
 #### Security
 **Spring Security is a filter based framework. Either we are enabling existing filter and configuring it, or adding our custom filter.** `configure()` methods will be executed on *start up* to set up `HttpSecurity` or configure spring security filters. Requests has to pass through multiple filters to reach the API. 
